@@ -72,7 +72,10 @@ const RED = {
 			try {
 				const args = process.argv.slice(2);
 				const config = main.require('./package.json');
-				const module = args && args.length > 0 ? args[0] : '';
+				let module = args && args.length > 0 ? args[0] : '';
+				if (!/^[a-zA-Z0-9_-]+$/g.test(module)) {
+					module = '';
+				}
 				const script = module && config && config['node-red'] && config['node-red'].nodes ? config['node-red'].nodes[module] : '';
 				if (script) {
 					//Pass all command-line arguments to the future Node-RED module

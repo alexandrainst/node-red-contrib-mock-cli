@@ -20,8 +20,6 @@ if (noderedNode) {
 }
 ```
 
-The last loaded node can be accessed from `RED.node` and the full list of loaded nodes from `RED.nodes`.
-
 One can then invoke the node from command-line, passing the node name first, and then some optional node properties in JSON format:
 
 ```sh
@@ -31,3 +29,7 @@ node ./index.js node-name --firstProperty='{"Some":"JSON"}' --secondProperty='"S
 The command expects JSON messages with a Node-RED structure `{"payload":"Example"}` from standard input, one line per message.
 
 The command outputs JSON messages with a Node-RED structure to standard output, one line per message.
+
+## Notes
+
+For unit testing, and if requiring the full Node-RED is fine, then check the official [node-red-node-test-helper](https://github.com/node-red/node-red-node-test-helper) instead of this module.
