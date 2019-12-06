@@ -12,8 +12,7 @@
  * @author Alexandre Alapetite <https://alexandra.dk/alexandre.alapetite>
  * @copyright Alexandra Institute <https://alexandra.dk> for the SynchroniCity European project <https://synchronicity-iot.eu> as a contribution to FIWARE <https://www.fiware.org>
  * @license MIT
- * @version 1.0
- * @date 2019-11-28 / 2019-12-02
+ * @date 2019-11-28 / 2019-12-06
  */
 
 const EventEmitter = require('events').EventEmitter;
@@ -26,6 +25,7 @@ function Context() {
 
 const RED = {
 		node: null,
+
 		nodes: {
 			config: {},
 			createNode: (node, config) => {
@@ -65,6 +65,7 @@ const RED = {
 			list: [],
 			registerType: (name, f) => new f(RED.nodes.config),
 		},
+
 		load: (main = null) => {
 			if (!main) {
 				main = require.main;
@@ -102,6 +103,7 @@ const RED = {
 			console.error('Usage: node ./index.js node-name --firstProperty="Hello World"');
 			return false;
 		},
+
 		run: () => {
 			//Number of STDIN lines for which we have not received a result yet
 			let nbAwaited = 0;
@@ -112,7 +114,8 @@ const RED = {
 				console.log(JSON.stringify(msg));
 				nbAwaited--;
 				if (done && nbAwaited <= 0) {
-					process.exit(0);
+					console.error('==== Done. ====');
+					//process.exit(0);
 				}
 			});
 
