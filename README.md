@@ -1,10 +1,10 @@
 # node-red-contrib-mock-cli
 
-This is a [Node.js](https://nodejs.org) module to allow running [Node-RED](https://nodered.org) nodes from command-line, and pipe one to another, using a similar flow than what would be done in the Node-RED graphical interface.
+This is a [Node.js](https://nodejs.org) module to allow running a single [Node-RED](https://nodered.org) node from command-line, and pipe one to another, using a similar flow than what would be done in the Node-RED graphical interface.
 
 Made in December 2019 by [Alexandre Alapetite](https://alexandra.dk/alexandre.alapetite) at the [Alexandra Institute](https://alexandra.dk) for the [SynchroniCity European project](https://synchronicity-iot.eu).
 
-License: MIT
+License: [MIT](LICENSE.md)
 
 ## Usage
 
@@ -24,6 +24,12 @@ One can then invoke the node from command-line, passing the node name first, and
 
 ```sh
 node ./index.js node-name --firstProperty='{"Some":"JSON"}' --secondProperty='"Some text"' --thirdProperty='123'
+```
+
+Properties of configuration nodes can be specified using a *dot* such as:
+
+```sh
+node ./index.js node-name --server.url='"https://example.net/"' --server.username='"Alice"'
 ```
 
 The command expects JSON messages with a Node-RED structure `{"payload":"Example"}` from standard input, one line per message.

@@ -28,6 +28,7 @@ const RED = {
 
 		nodes: {
 			config: {},
+			list: {},
 			createNode: (node, config) => {
 				node.eventEmitter = new EventEmitter();
 				node.on = (eventName, listener) => node.eventEmitter.on(eventName, listener);
@@ -60,10 +61,13 @@ const RED = {
 				node.context = () => context;
 
 				RED.node = node;
-				RED.nodes.list.push(node);
+				RED.nodes.list[config.name] = node;
 			},
-			list: [],
-			registerType: (name, f) => new f(RED.nodes.config),
+			getNode: id => RED.nodes.list[id],
+			registerType: (name, f) => {
+				RED.nodes.config.name = name;
+				return new f(RED.nodes.config);
+			}
 		},
 
 		load: (main = null) => {
@@ -82,11 +86,32 @@ const RED = {
 					//Pass all command-line arguments to the future Node-RED module
 					RED.nodes.config = {};
 					for (let param of args.slice(1)) {
-						const match = /^--([a-zA-Z0-9_]+)=(.+)?$/g.exec(param);
+						const match = /^--([a-zA-Z0-9._]+)=(.+)?$/g.exec(param);
 						if (match) {
 							const paramKey = match[1];
 							const paramValue = JSON.parse(match[2]);
-							RED.nodes.config[paramKey] = paramValue;
+							if (paramKey.indexOf('.') >= 0) {
+								//Used for configuration nodes
+								const paramKeys = paramKey.split('.');
+								if (paramKeys.length === 2) {
+									const configurationNodeName = paramKeys[0];
+									const configurationNodeKey = paramKeys[1];
+									let configurationNode = RED.nodes.getNode(configurationNodeName);
+									if (!configurationNode) {
+										configurationNode = {};
+										const configurationNodeConfig = {
+											name: configurationNodeName,
+										};
+										RED.nodes.createNode(configurationNode, configurationNodeConfig);
+									}
+									configurationNode[configurationNodeKey] = paramValue;
+									RED.nodes.config[configurationNodeName] = configurationNodeName;
+								} else {
+									console.warn('Invalid Node-RED configuration node parameter: ' + param);
+								}
+							} else {
+								RED.nodes.config[paramKey] = paramValue;
+							}
 						} else {
 							console.warn('Invalid parameter for Node-RED module: ' + param);
 						}
