@@ -12,7 +12,7 @@
  * @author Alexandre Alapetite <https://alexandra.dk/alexandre.alapetite>
  * @copyright Alexandra Institute <https://alexandra.dk> for the SynchroniCity European project <https://synchronicity-iot.eu> as a contribution to FIWARE <https://www.fiware.org>
  * @license MIT
- * @date 2019-11-28 / 2019-12-06
+ * @date 2019-11-28 / 2019-12-18
  */
 
 const EventEmitter = require('events').EventEmitter;
@@ -53,7 +53,12 @@ const RED = {
 				};
 				node.send = msg => node.eventEmitter.emit('send', msg);
 
+				node.type = config.type;
+				node.name = config.name;
+				node.id = config.id;
+
 				node.status = status => {};
+				node.wires = [];
 
 				const context = new Context();
 				context.flow = new Context();
@@ -65,7 +70,9 @@ const RED = {
 			},
 			getNode: id => RED.nodes.list[id],
 			registerType: (name, f) => {
-				RED.nodes.config.name = name;
+				RED.nodes.config.type = name;
+				RED.nodes.config.name = RED.nodes.config.name;
+				RED.nodes.config.id = RED.nodes.config.id || name;
 				return new f(RED.nodes.config);
 			}
 		},
