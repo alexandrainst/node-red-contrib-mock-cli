@@ -6,13 +6,13 @@
  * This script mocks Node-RED so that it is possible
  * to natively call a module originally designed for Node-RED from command line without requiring Node-RED.
  *
- * The first command-line argument parameter must be a Node-RED module name as declared in the local `package.json['node-red']['nodes']`.
+ * The first command-line argument parameter must be a Node-RED module type as declared in the local `package.json['node-red']['nodes']`.
  * The following command-line arguments must use the format `--someArgument='Hello World'` and are passed to the module via the Node-RED configuration.
  *
  * @author Alexandre Alapetite <https://alexandra.dk/alexandre.alapetite>
  * @copyright Alexandra Institute <https://alexandra.dk> for the SynchroniCity European project <https://synchronicity-iot.eu> as a contribution to FIWARE <https://www.fiware.org>
  * @license MIT
- * @date 2019-11-28 / 2019-12-18
+ * @date 2019-11-28 / 2019-12-19
  */
 
 const EventEmitter = require('events').EventEmitter;
@@ -132,7 +132,7 @@ const RED = {
 				console.error(ex);
 			}
 			console.error('Invalid argument for Node-RED module! Check package.json');
-			console.error('Usage: node ./index.js node-name --firstProperty="Hello World"');
+			console.error('Usage: node ./index.js node-type --firstProperty="Hello World"');
 			return false;
 		},
 
