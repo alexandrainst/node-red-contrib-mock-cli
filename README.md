@@ -11,6 +11,7 @@ License: [MIT](LICENSE.md)
 
 See an example of use in [*node-red-contrib-json-multi-schema*](https://github.com/alexandrainst/node-red-contrib-json-multi-schema).
 
+
 ## Usage
 
 Add an `index.js` file to your Node-RED node, next to a `package.json` that has a structure like `{ "node-red": {"node-type": "node-type.js"} }`:
@@ -37,9 +38,20 @@ Properties of configuration nodes can be specified using a *dot* such as:
 node ./index.js node-type --server.url='"https://example.net/"' --server.username='"Alice"'
 ```
 
+### JSON in Node-RED format
+
 The command expects JSON messages with a Node-RED structure `{"payload":"Example"}` from standard input, one line per message.
 
+[`jq`](https://stedolan.github.io/jq/) may be used to break down and format a standard payload into a Node-RED payload:
+
+For instance if the input is a list of observations wrapped into a JSON array:
+
+```sh
+jq -c '.[] | {"payload":.}'
+```
+
 The command outputs JSON messages with a Node-RED structure to standard output, one line per message.
+
 
 ## Limitations
 
