@@ -1,18 +1,21 @@
 /* jshint esversion:8, node:true, strict:true */
 "use strict";
 /**
- * Node-RED mocker.
- * 
+ * Node-RED CLI mocker.
+ *
  * This script mocks Node-RED so that it is possible
  * to natively call a module originally designed for Node-RED from command line without requiring Node-RED.
  *
- * The first command-line argument parameter must be a Node-RED module type as declared in the local `package.json['node-red']['nodes']`.
- * The following command-line arguments must use the format `--someArgument='Hello World'` and are passed to the module via the Node-RED configuration.
+ * The first command-line argument parameter must be a Node-RED module type
+ * as declared in the local `package.json['node-red']['nodes']`.
+ * The following command-line arguments must use the format `--someArgument='Hello World'`
+ * and are passed to the module via the Node-RED configuration.
  *
  * @author Alexandre Alapetite <https://alexandra.dk/alexandre.alapetite>
- * @copyright Alexandra Institute <https://alexandra.dk> for the SynchroniCity European project <https://synchronicity-iot.eu> as a contribution to FIWARE <https://www.fiware.org>
+ * @copyright Alexandra Institute <https://alexandra.dk> for the SynchroniCity European project <https://synchronicity-iot.eu>
+ * as a contribution to FIWARE <https://www.fiware.org>.
  * @license MIT
- * @date 2019-11-28 / 2019-12-19
+ * @date 2019-11-28 / 2019-12-20
  */
 
 const EventEmitter = require('events').EventEmitter;
@@ -88,7 +91,8 @@ const RED = {
 				if (!/^[a-zA-Z0-9_-]+$/g.test(module)) {
 					module = '';
 				}
-				const script = module && config && config['node-red'] && config['node-red'].nodes ? config['node-red'].nodes[module] : '';
+				const script = module && config && config['node-red'] && config['node-red'].nodes ?
+					config['node-red'].nodes[module] : '';
 				if (script) {
 					//Pass all command-line arguments to the future Node-RED module
 					RED.nodes.config = {};
