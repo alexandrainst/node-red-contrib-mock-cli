@@ -52,6 +52,8 @@ jq -c '.[] | {"payload":.}'
 
 The command outputs JSON messages with a Node-RED structure to standard output, one line per message.
 
+See some examples of inputs and outputs in [*node-red-contrib-json-multi-schema*](https://github.com/alexandrainst/node-red-contrib-json-multi-schema#wiringpiping-all-modules-together).
+
 
 ## Limitations
 
