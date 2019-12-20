@@ -1,11 +1,13 @@
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/alexandrainst/node-red-contrib-mock-cli/Node%20CI?logo=github)
-![npm](https://img.shields.io/npm/dy/node-red-contrib-mock-cli?logo=npm)
-
 # node-red-contrib-mock-cli
 
 This is a [Node.js](https://nodejs.org) module to allow running **a single** [Node-RED](https://nodered.org) node from command-line, and pipe one to another, using a similar flow than what would be done in the Node-RED graphical interface.
 
-Made in December 2019 by [Alexandre Alapetite](https://alexandra.dk/alexandre.alapetite) at the [Alexandra Institute](https://alexandra.dk) for the [SynchroniCity European project](https://synchronicity-iot.eu).
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/alexandrainst/node-red-contrib-mock-cli/Node%20CI?logo=github)
+![npm](https://img.shields.io/npm/dy/node-red-contrib-mock-cli?logo=npm)
+
+[![NPM statistics](https://nodei.co/npm/node-red-contrib-mock-cli.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/node-red-contrib-mock-cli/)
+
+Originally made in December 2019 by [Alexandre Alapetite](https://alexandra.dk/alexandre.alapetite) at the [Alexandra Institute](https://alexandra.dk) for the [SynchroniCity European project](https://synchronicity-iot.eu).
 
 License: [MIT](LICENSE.md)
 
