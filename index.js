@@ -150,7 +150,7 @@ const RED = {
 				console.log(JSON.stringify(msg));
 				nbAwaited--;
 				if (done && nbAwaited <= 0) {
-					console.error('==== Done. ====');
+					console.warn('==== Done. ====');
 					//process.exit(0);
 				}
 			});
@@ -183,17 +183,17 @@ const RED = {
 			});
 
 			rl.on('error', () => {
-				console.error('==== STDIN error ====');
+				console.warn('==== STDIN error ====');
 				done = true;
 			});
 
 			rl.on('pause', () => {
-				console.error('==== STDIN paused ====');
+				console.warn('==== STDIN paused ====');
 				done = true;
 			});
 
 			rl.on('close', () => {
-				console.error('==== STDIN closed ====');
+				console.warn('==== STDIN closed ====');
 				done = true;
 			});
 		},

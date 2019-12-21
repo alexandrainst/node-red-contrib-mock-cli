@@ -1,0 +1,32 @@
+<script>
+	RED.nodes.registerType('test-node', {
+		category: 'function',
+		defaults: {
+			name: { value: '', },
+			multiplyBy: { value: 2, },
+		},
+		inputs: 1,
+		outputs: 1,
+		icon: 'function.png',
+		label: function () {
+			return this.name || 'test-node';
+		},
+	});
+</script>
+
+<script type="text/x-red" data-template-name="test-node">
+	<div class="form-row">
+		<label for="node-input-name"><i class="icon-tag"></i> Name</label>
+		<input type="text" id="node-input-name" placeholder="Name" />
+	</div>
+	<div class="form-row">
+		<label for="node-input-multiplyBy"><i class="icon-tag"></i> Multiply by</label>
+		<input type="number" id="node-input-multiplyBy" placeholder="2" />
+	</div>
+</script>
+
+<script type="text/x-red" data-help-name="test-node">
+	<p>
+		This test node will multiply the payload by the value given in the <code>multiplyBy</code> property.
+	</p>
+</script>

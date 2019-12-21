@@ -10,6 +10,11 @@
 		"nodered",
 		"Node-RED"
 	],
+	"node-red": {
+		"nodes": {
+			"test-node": "test-node.js"
+		}
+	},
 	"author": {
 		"name": "Alexandre Alapetite",
 		"url": "https://alexandra.dk/alexandre.alapetite"
@@ -32,6 +37,6 @@
 		"start": "node ./index.js",
 		"lint": "node ./node_modules/.bin/jshint *.js",
 		"pretest": "npm run-script lint",
-		"test": "node -v"
+		"test": "echo '{\"payload\":3}' | node ./test.js test-node --multiplyBy='5' | grep -q '{\"payload\":15}' && echo 'OK'"
 	}
 }

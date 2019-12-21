@@ -16,12 +16,13 @@ See an example of use in [*node-red-contrib-json-multi-schema*](https://github.c
 
 ## Usage
 
-Add an `index.js` file to your Node-RED node, next to a `package.json` that has a structure like `{ "node-red": {"node-type": "node-type.js"} }`:
+Add an entry file `index.js` (or another name) to your Node-RED node, next to a `package.json` that contains a structure like `{ "node-red": {"node-type": "node-type.js"} }`:
 
 ```js
 const RED = require('node-red-contrib-mock-cli');
 const noderedNode = RED.load(require.main);
 if (noderedNode) {
+	//noderedNode.*	//Access to the Node-RED node instance
 	RED.run();
 } else {
 	console.error('Error loading Node-RED node!');
@@ -40,6 +41,20 @@ Properties of configuration nodes can be specified using a *dot* such as:
 node ./index.js node-type --server.url='"https://example.net/"' --server.username='"Alice"'
 ```
 
+### Example
+Replace `test.js` by the name of your entry file (e.g. `index.js`), and `test-node` by the name of the type of your node.
+
+```sh
+printf '{"payload":3} \n {"payload":7}' | node ./test.js test-node --multiplyBy='5'
+```
+
+Outputs:
+
+```
+{"payload":15}
+{"payload":35}
+```
+
 ### JSON in Node-RED format
 
 The command expects JSON messages with a Node-RED structure `{"payload":"Example"}` from standard input, one line per message.
@@ -56,8 +71,20 @@ The command outputs JSON messages with a Node-RED structure to standard output, 
 
 See some examples of inputs and outputs in [*node-red-contrib-json-multi-schema*](https://github.com/alexandrainst/node-red-contrib-json-multi-schema#wiringpiping-all-modules-together).
 
+### Standard outputs
+
+Only the Node-RED JSON payload is emitted on standard-output (STDOUT), while all other messages and errors are on the standard-error (STDERR).
+
+
+### Advanced usage
+It is possible to catch the node events { `debug`, `error`, `log` } to override the default behaviour (which is to write to standard-error):
+
+```js
+noderedNode.on('debug', msg => console.warn('Caught event: ' + msg));
+```
+
 
 ## Limitations
 
-This module does not have the ambition of exposing the full Node-RED functionality, but instead focuses on simple cases, providing a tiny and efficient layer without dependency.
-So for unit testing, and if requiring the full Node-RED is fine, then check the official [node-red-node-test-helper](https://github.com/node-red/node-red-node-test-helper) instead of this module.
+This module does not have the ambition of exposing the full Node-RED functionality, but instead focuses on simple cases, providing a tiny and efficient layer without any dependency.
+So for more advanced unit testing, and if requiring the full Node-RED is fine, then check the official [node-red-node-test-helper](https://github.com/node-red/node-red-node-test-helper) instead of this module.
