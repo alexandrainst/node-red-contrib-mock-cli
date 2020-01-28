@@ -136,7 +136,7 @@ const RED = {
 				console.error(ex);
 			}
 			console.error('Invalid argument for Node-RED module! Check package.json');
-			console.error('Usage: node ./index.js node-type --firstProperty="Hello World"');
+			console.error('Usage: node ./index.js node-name --firstProperty=\'{"Some":"JSON"}\' --secondProperty=\'"Some text"\' --thirdProperty=\'123\'');
 			return false;
 		},
 
