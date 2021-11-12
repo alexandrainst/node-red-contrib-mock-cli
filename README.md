@@ -42,6 +42,7 @@ node ./index.js node-type --server.url='"https://example.net/"' --server.usernam
 ```
 
 ### Example
+
 Replace `test.js` by the name of your entry file (e.g. `index.js`), and `test-node` by the name of the type of your node.
 
 ```sh
@@ -50,7 +51,7 @@ printf '{"payload":3} \n {"payload":7}' | node ./test.js test-node --multiplyBy=
 
 Outputs:
 
-```
+```json
 {"payload":15}
 {"payload":35}
 ```
@@ -77,6 +78,7 @@ Only the Node-RED JSON payload is emitted on standard-output (STDOUT), while all
 
 
 ### Advanced usage
+
 It is possible to catch the node events { `debug`, `error`, `log` } to override the default behaviour (which is to write to standard-error):
 
 ```js
