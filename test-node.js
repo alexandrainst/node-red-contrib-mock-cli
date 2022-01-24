@@ -1,10 +1,9 @@
-/* jshint esversion:8, node:true, strict:true */
 /**
  * Node-RED test node.
  */
 
 module.exports = RED => {
-	"use strict";
+	'use strict';
 
 	function TestNode(config) {
 		RED.nodes.createNode(this, config);
