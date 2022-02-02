@@ -1,6 +1,6 @@
 {
 	"name": "node-red-contrib-mock-cli",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Allows running Node-RED modules from command-line.",
 	"main": "index.js",
 	"readmeFilename": "readme.md",
@@ -10,7 +10,11 @@
 		"nodered",
 		"node-red"
 	],
+	"engines": {
+		"node": ">=8"
+	},
 	"node-red": {
+		"version": ">=0.20.0",
 		"nodes": {
 			"test-node": "test-node.js"
 		}
