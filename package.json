@@ -1,6 +1,6 @@
 {
 	"name": "node-red-contrib-mock-cli",
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"description": "Allows running Node-RED modules from command-line.",
 	"main": "index.js",
 	"readmeFilename": "readme.md",
@@ -29,7 +29,7 @@
 		"url": "https://github.com/alexandrainst/node-red-contrib-mock-cli.git"
 	},
 	"devDependencies": {
-		"eslint": "^8.29.0",
+		"eslint": "^8.31.0",
 		"eslint-config-standard": "^17.0.0",
 		"eslint-plugin-html": "^7.1.0",
 		"eslint-plugin-import": "^2.26.0",
