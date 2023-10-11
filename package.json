@@ -3,7 +3,6 @@
 	"version": "1.2.4",
 	"description": "Allows running Node-RED modules from command-line.",
 	"main": "index.js",
-	"readmeFilename": "readme.md",
 	"keywords": [
 		"CLI",
 		"command-line",
