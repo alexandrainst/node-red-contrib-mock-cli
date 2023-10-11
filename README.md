@@ -2,7 +2,7 @@
 
 This is a [Node.js](https://nodejs.org) module to allow running **a single** [Node-RED](https://nodered.org) node from command-line, and pipe one to another, using a similar flow than what would be done in the Node-RED graphical interface.
 
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/alexandrainst/node-red-contrib-mock-cli/nodejs.yml?branch=master&logo=github)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/alexandrainst/node-red-contrib-mock-cli/nodejs.yml?branch=main&logo=github)
 ![npm](https://img.shields.io/npm/dy/node-red-contrib-mock-cli?logo=npm)
 
 [![NPM statistics](https://nodei.co/npm/node-red-contrib-mock-cli.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/node-red-contrib-mock-cli/)
