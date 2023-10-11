@@ -205,7 +205,12 @@ const RED = {
 
 	mockHttpIn: (msg) => {
 		if (!msg.req) {
-			msg.req = {};
+			Object.defineProperty(msg, 'req', {
+				value: {},
+				configurable: true,
+				enumerable: false,
+				writable: true,
+			});
 		}
 		if (!msg.req.headers) {
 			msg.req.headers = {};
@@ -223,7 +228,12 @@ const RED = {
 
 	mockHttpOut: (msg) => {
 		if (!msg.res) {
-			msg.res = {};
+			Object.defineProperty(msg, 'res', {
+				value: {},
+				configurable: true,
+				enumerable: false,
+				writable: true,
+			});
 		}
 		if (!msg.res._res) {
 			msg.res._res = {};
