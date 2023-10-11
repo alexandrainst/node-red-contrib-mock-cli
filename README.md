@@ -11,8 +11,8 @@ Originally made in December 2019 by [Alexandre Alapetite](https://alexandra.dk/a
 
 License: [MIT](LICENSE.md)
 
-See an example of use in [*node-red-contrib-json-multi-schema*](https://github.com/alexandrainst/node-red-contrib-json-multi-schema).
-
+See examples of use in [*node-red-contrib-json-multi-schema*](https://github.com/alexandrainst/node-red-contrib-json-multi-schema),
+[*node-red-contrib-chunks-to-lines*](https://github.com/alexandrainst/node-red-contrib-chunks-to-lines), [*node-red-http-basic-auth*](https://github.com/alexandrainst/node-red-http-basic-auth).
 
 ## Usage
 

@@ -10,11 +10,11 @@
  * The following command-line arguments must use the format `--someArgument='Hello World'`
  * and are passed to the module via the Node-RED configuration.
  *
- * @author Alexandre Alapetite <https://alexandra.dk/alexandre.alapetite>
+ * @author Alexandre Alapetite <https://github.com/Alkarex>
  * @copyright Alexandra Institute <https://alexandra.dk> for the SynchroniCity European project <https://synchronicity-iot.eu>
  * as a contribution to FIWARE <https://www.fiware.org>.
  * @license MIT
- * @date 2019-11-28 / 2022-02-02
+ * @date 2019-11-28 / 2023-10-11
  */
 
 const EventEmitter = require('events').EventEmitter;
@@ -173,8 +173,10 @@ const RED = {
 		// Read JSON messages from standard input
 		rl.on('line', line => {
 			try {
-				const msg = JSON.parse(line);
+				let msg = JSON.parse(line);
 				nbAwaited++;
+				msg = RED.mockHttpIn(msg);
+				msg = RED.mockHttpOut(msg);
 				RED.node.input(msg);
 			} catch (ex) {
 				console.error('Invalid JSON input: ' + ex);
@@ -199,6 +201,43 @@ const RED = {
 
 	util: {
 		cloneMessage: (msg) => JSON.parse(JSON.stringify(msg)),
+	},
+
+	mockHttpIn: (msg) => {
+		if (!msg.req) {
+			msg.req = {};
+		}
+		if (!msg.req.headers) {
+			msg.req.headers = {};
+		}
+		// http://expressjs.com/en/api.html#req
+		msg.req.get = (field) => {
+			if (typeof field !== 'string') {
+				return undefined;
+			}
+			field = field.toLowerCase();
+			return msg.req.headers[field];
+		};
+		return msg;
+	},
+
+	mockHttpOut: (msg) => {
+		if (!msg.res) {
+			msg.res = {};
+		}
+		if (!msg.res._res) {
+			msg.res._res = {};
+		}
+		// http://expressjs.com/en/api.html#res
+		msg.res._res.set = (field, value) => {};
+		msg.res._res.type = (contentType) => {};
+		msg.res._res.status = (code) => {
+			return msg.res._res;
+		};
+		msg.res._res.send = (body) => {
+			msg.payload = body;
+		};
+		return msg;
 	},
 };
 
