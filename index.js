@@ -145,9 +145,21 @@ const RED = {
 		let nbAwaited = 0;
 		let done = false;
 
-		// When our Node-RED module sends/outpus a new message
+		// When our Node-RED module sends/outputs a new message
 		RED.node.on('send', msg => {
-			console.log(JSON.stringify(msg));
+			if (Array.isArray(msg)) {
+				// Multiple outputs. Supports only two outputs for now (0: STDOUT = fd1, 1: STDERR = fd2)
+				const fd1 = msg[0];
+				if (fd1 !== null && fd1 !== undefined) {
+					console.log(JSON.stringify(fd1));
+				}
+				const fd2 = msg[1];
+				if (fd2 !== null && fd2 !== undefined) {
+					console.error(JSON.stringify(fd2));
+				}
+			} else {
+				console.log(JSON.stringify(msg));
+			}
 			nbAwaited--;
 			if (done && nbAwaited <= 0) {
 				console.warn('==== Done. ====');
