@@ -259,6 +259,9 @@ const RED = {
 		msg.res._res.send = (body) => {
 			msg.payload = body;
 		};
+		msg.res._res.sendStatus = (statusCode) => {
+			return msg.res._res.status(statusCode).send(statusCode);
+		};
 		return msg;
 	},
 };
