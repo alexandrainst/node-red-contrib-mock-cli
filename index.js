@@ -177,6 +177,7 @@ const RED = {
 
 		const readline = require('readline');
 
+		// deepcode ignore MissingClose: the programme stops afterwards
 		const rl = readline.createInterface({
 			input: process.stdin,
 			terminal: false,
