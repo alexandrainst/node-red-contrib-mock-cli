@@ -1,6 +1,6 @@
 {
 	"name": "node-red-contrib-mock-cli",
-	"version": "1.4.4",
+	"version": "1.4.5",
 	"description": "Allows running Node-RED modules from command-line.",
 	"main": "index.js",
 	"keywords": [
@@ -43,6 +43,7 @@
 		"fix": "npm run rtlcss && npm run eslint_fix && npm run markdownlint_fix",
 		"pretest": "npm run eslint && npm run markdownlint",
 		"start": "node ./index.js",
+		"test:only": "echo '{\"payload\":3}' | node ./test.js test-node --multiplyBy='5' | grep -q '{\"payload\":15}' && echo 'OK'",
 		"test": "echo '{\"payload\":3}' | node ./test.js test-node --multiplyBy='5' | grep -q '{\"payload\":15}' && echo 'OK'"
 	}
 }
