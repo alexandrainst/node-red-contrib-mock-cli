@@ -214,6 +214,36 @@ const RED = {
 
 	util: {
 		cloneMessage: (msg) => JSON.parse(JSON.stringify(msg)),
+		getMessageProperty: (msg, property) => {
+			if (!property || property === 'payload') {
+				return msg.payload;
+			}
+			const parts = property.split('.');
+			let value = msg;
+			for (const part of parts) {
+				if (value === undefined || value === null) {
+					return undefined;
+				}
+				value = value[part];
+			}
+			return value;
+		},
+		setMessageProperty: (msg, property, value) => {
+			if (!property || property === 'payload') {
+				msg.payload = value;
+				return;
+			}
+			const parts = property.split('.');
+			let obj = msg;
+			for (let i = 0; i < parts.length - 1; i++) {
+				const part = parts[i];
+				if (!obj[part]) {
+					obj[part] = {};
+				}
+				obj = obj[part];
+			}
+			obj[parts[parts.length - 1]] = value;
+		},
 	},
 
 	mockHttpIn: (msg) => {
